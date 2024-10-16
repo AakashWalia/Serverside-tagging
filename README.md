@@ -1,18 +1,10 @@
-# Serverside-tagging
-This README provides a comprehensive guide for deploying a new `digitalData` object that initializes on page load and during user interactions on your website. Follow these steps to implement and test the `digitalData` structure effectively.
+# Purpose Of The guide
 
-## Table of Contents
-
-- [Initialization](#initialization)
-- [Object Structure](#object-structure)
-  - [Interaction Event](#interaction-event)
-  - [Page Load Event](#page-load-event)
-- [Type Definitions](#type-definitions)
-- [Examples](#examples)
-  - [Navigation Bar](#1-navigation-bar)
-  - [Card](#2-card)
-  - [Button (CTA)](#3-button-cta)
-  - [Accordion](#4-accordion)
-  - [Search Bar](#5-search-bar)
-  - [Form Submission](#6-form-submission)
-- [Notes](#notes)
+The purpose of this is to:
+- Provide an implementation overview and what steps you need to follow to implement new tracking on the website.
+- Provide how to create and maintain a solution design.
+- Provide dataLayer scripts and how to create one adhering to existing structure.
+- Provide instructions to configure Adobe Launch if you are onboarding a new product.
+- Provide insight into creating and maintaining report suites.
+- Provide information on how to configure rules, extensions, and data elements in Adobe Launch.
+- Provide step-by-step instructions on how to track new events.
