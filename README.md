@@ -1,10 +1,5 @@
 # Purpose Of The guide
-
-The purpose of this is to:
-- Provide an implementation overview and what steps you need to follow to implement new tracking on the website.
-- Provide how to create and maintain a solution design.
-- Provide dataLayer scripts and how to create one adhering to existing structure.
-- Provide instructions to configure Adobe Launch if you are onboarding a new product.
-- Provide insight into creating and maintaining report suites.
-- Provide information on how to configure rules, extensions, and data elements in Adobe Launch.
-- Provide step-by-step instructions on how to track new events.
+This README provides a comprehensive guide for seting up new adobe launch property and deploy tags. Following the guide you will be able to achieve the following:
+1. Create Rules and setup extensions in Adobe.
+2. Create data elements and map in Adobe rules.
+3. Test your rules and your setup. 
