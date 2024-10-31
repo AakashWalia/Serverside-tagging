@@ -1,5 +1,5 @@
 # Datastreams
-A datastream represents the server-side configuration when implementing the Adobe Experience Platform Web and Mobile SDKs. Datastream is a configuration defines how data is collected, processed, and sent to various destinations.
+A datastream represents the server-side configuration when implementing the Adobe Experience Platform Web and Mobile SDKs. Datastream is a configuration that defines how data is collected, processed, and sent to various destinations.
 
 ## Setting Up a Datastream in Adobe Experience Platform
 
@@ -21,7 +21,7 @@ A datastream represents the server-side configuration when implementing the Adob
 
                                                    **Save**
    
-## Event Forwarding
+# Event Forwarding
 Lets learn what event forwarding is before we learn how to configure a service in datastream. 
 
 Event forwarding in Adobe Experience Platform allows you to send collected event data to a destination for server-side processing. Event forwarding decreases web page and app weight by using Adobe Experience Platform Edge Network to execute tasks normally done on the client. Implemented in a similar manner to tags, event forwarding rules can transform and send data to new destinations, but instead of sending this data from a client application like a web browser, it is sent from Adobe’s servers.
@@ -45,16 +45,33 @@ Event forwarding in Adobe Experience Platform allows you to send collected event
 
                                                    **Add Service**
 
-4. **Select Service Type:** From the dropdown list, select **Event Forwarding** as the service type.
+3. **Select Service Type:** From the dropdown list, select **Event Forwarding** as the service type.
 
                                                    **Service Type**
 
-5. **Map to Event Forwarding Property:** Choose your desired event forwarding property from the dropdown list to map it accordingly.
+4. **Map to Event Forwarding Property:** Choose your desired event forwarding property from the dropdown list to map it accordingly.
 
-6. **Select Environment:**
-   - Specify the environment you wish to use for this service.
+5. **Select Environment:** Specify the environment you wish to use for this service.
+  
+6. **Save Configuration:** Click **Save** to finalize and apply your service configuration.
 
-7. **Save Configuration:**
-   - Click **Save** to finalize and apply your service configuration.
+# Schema
+A schema is a set of rules that represent and validate the structure and format of data. At a high level, schemas provide an abstract definition of a real-world object (such as a person) and outline what data should be included in each instance of that object (such as first name, last name, birthday, and so on). XDM schemas are ideal for storing vast amounts of complex data in a self-contained format. You can have multiple schemas configured and choose the one that fits your use case. 
 
-After you have created the datastreams and the property and configured the 
+                                                   **Schema**
+
+## Mapping the schema
+
+### Steps:
+
+1. **Navigate to Data Collection:** Go to the **Data Collection** section from the main menu.
+
+2. **Create a New Datastream:** Click on **Datastreams** in the left-hand menu and select **Create a Datastream**.
+
+You are ready to start creating rules in client side and server side after you have created the datastreams, created the property, configured the service and created the schema. 
+
+# Client Side Setup
+
+## Websdk Extension
+
+First step is to configure the websdk extension clientside. This extension is used to send the parameters that we require to be send with payload from adobe edge server to FB or CM etc. 
