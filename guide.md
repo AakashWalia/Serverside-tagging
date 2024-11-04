@@ -64,14 +64,37 @@ A schema is a set of rules that represent and validate the structure and format 
 
 ### Steps:
 
-1. **Navigate to Data Collection:** Go to the **Data Collection** section from the main menu.
+1. **Create Data Schema:** Click on create schema and choose manual option. Further choose User, Event or other depending on what information you want to collect in your schema.
+2. **Edit Data Schema:** Once your schema is created, you can also edit your schema using data fields. You can also choose where in schema you want your data fields. For this specific scenario, we required information like email, phone, fbc (facebook cookie) etc. These were added in different parts of the schema.
 
-2. **Create a New Datastream:** Click on **Datastreams** in the left-hand menu and select **Create a Datastream**.
-
-You are ready to start creating rules in client side and server side after you have created the datastreams, created the property, configured the service and created the schema. 
+                                                   **Schema example**
+   
+You are ready to start creating rules in client side and server side after you have created the datastreams, created the property, configured the service and created the schema as per your use case. 
 
 # Client Side Setup
 
 ## Websdk Extension
 
-First step is to configure the websdk extension clientside. This extension is used to send the parameters that we require to be send with payload from adobe edge server to FB or CM etc. 
+Begin by configuring the WebSDK extension on the client side. This extension facilitates the transmission of necessary parameters with the payload from the Adobe Edge server to platforms such as Facebook or Campaign Manager. The only required configuration required is **IMS Organisation ID and Datastreams** Set up the IMS Organisation ID and the datastreams you have configured. You can further configure other settings such as personalisation and identity settings as required. These settings will govern the type of data collected and the method of collection.
+
+                                                   **Websdk Extension**
+
+Upon completing the configuration, proceed to create global variables containing specific data within schemas intended for server-side transmission. It is essential to establish three primary rules:
+
+1. **Global Data Object -** Define the global object or data that should accompany all server calls.
+
+                                                   **Data Object**
+   
+2. **Global Data Variable -** Establish a variable that is updated and populated with specific data. This variable can be referenced similarly to other data elements.
+
+                                                     **Data Variable**
+3. **Global Merge Object -** Implement this data element to perform dual functions: transmitting the correct information to the server and updating the variable. It merges two data elements used in tandem.
+
+                                                     **Merge Object**
+
+In addition to the above three data elements, you should create data elements to capture the information required necessary for your ads platform. For example - Meta CAPI requires you to send a unique event id, fpc, fbp, user agent etc. CM API requires information like hashed email, hashed phone, GCLDC cookie etc to enhance the conversions. 
+
+                                                     **Data Elements**
+
+After you have created your data elements, you can create the rules to send data to server side. 
+
