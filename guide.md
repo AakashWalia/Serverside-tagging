@@ -1,3 +1,13 @@
+# 
+
+1. Configure datastreams for data collection and processing in Adobe Experience Platform.
+2. Implement event forwarding to optimise server-side data handling.
+3. Utilise schemas for structuring and validating data.
+4. Set up WebSDK for client-side data transmission.
+5. Create global variables and data elements for server-side operations.
+6. Configure rules for both client-side and server-side data handling.
+7. Use extensions to integrate with Meta and Adobe Cloud.
+
 # Datastreams
 A datastream represents the server-side configuration when implementing the Adobe Experience Platform Web and Mobile SDKs. Datastream is a configuration that defines how data is collected, processed, and sent to various destinations.
 
@@ -92,9 +102,58 @@ Upon completing the configuration, proceed to create global variables containing
 
                                                      **Merge Object**
 
-In addition to the above three data elements, you should create data elements to capture the information required necessary for your ads platform. For example - Meta CAPI requires you to send a unique event id, fpc, fbp, user agent etc. CM API requires information like hashed email, hashed phone, GCLDC cookie etc to enhance the conversions. 
+In addition to the above three data elements, you should create data elements to capture the information required necessary for your ads platform. For example - Meta CAPI requires you to send a unique event id, fpc, fbp, user agent etc. CM API requires information like hashed email, hashed phone, GCLDC cookie etc to enhance the conversions.
 
                                                      **Data Elements**
+                                                     
+After you have created data elements to capture the information you require, you can create the rules to send data to server side.
 
-After you have created your data elements, you can create the rules to send data to server side. 
+## Rule Configuration
 
+Facebook Pixel is already setup, you need to add further actions to enable the pixel to send the paramters you need server side. Configure a SEND EVENT after your facebook pixel. Set the type of event (pageviews if its a pageview rule, Lead if its a lead event) and populate the XDM field with the Merge Object you created earlier. This enables the schema to be sent to adobe edge network. You can use the path for the specific variables and reference them to send it with your server side call. 
+
+                                                     **Rule Configuration**
+
+# Server Side Setup
+
+## Extensions
+
+For CM and Meta you need the follwing two extensions:
+
+1. Meta Conversions API Extension - You need Pixel ID and Access Token from your meta account for specific account to establish the connection. After the connection is established you can configure the rule and send data from Adobe Edge Server to your meta platform.
+
+                                                     **Meta Conversion**
+
+**Note** that you can only use one Pixel ID and Access Token to integrate with your Meta account. However, when you are creating the rule, you can overwrite the pixel ids and access tokens.
+
+                                                     **Overwrite**
+   
+2. Adobe Cloud Connector - No configuration necessary.
+
+Now you can start creating the data elements and rules server side.
+
+## Data Elements
+
+Data elements are inherently limited in server-side contexts due to their inability to be deployed directly on websites. Consequently, they can only reference variables transmitted to your server. This limitation is addressed through the use of schemas, which facilitate the capture of parameters on the server side that were initially collected on your website. To achieve this, reference the path of the parameter within the schema. This approach ensures that the necessary data is accurately captured and utilised for server-side operations.
+
+                                                     **fbccookie**
+
+## Rule Configuration
+
+In contrast to client-side operations, server-side processes do not utilise triggers, as it is not possible to execute a rule directly on the server. Instead, data can only be forwarded or pushed from the client (web or app) to the server. However, similar to client-side rules, server-side operations can employ conditions to determine actions based on specific pages and events. By defining these conditions, you ensure that the appropriate actions are taken when the specified criteria are satisfied, thereby facilitating effective server-side data handling.
+
+For instance, when configuring a Lead event for an AAMI account, you may establish the following conditions to specify the desired actions when these conditions are met:
+
+                                                     **LeadEvent** 
+
+1. Conditions - Lead Event condition to configure the rule to execute exclusively when the event is identified as a lead event and Brand condition to ensure the rule fires only when the brand is AAMI, excluding other digital brands such as APIA.
+
+                                                     **Conditions**
+
+3. Actions - Set up the action to transmit the API conversion event to Meta. Populate the fields with the appropriate event parameters, such as using {{fbc cookie}} for the click ID and {{fbp cookie}} for the browser ID.
+
+                                                     **Actions**
+
+Once the rule is configured, proceed to publish it in the development environment. Utilize the Adobe Cloud Debugger extension to conduct thorough testing. Upon successful validation of the rules, you may publish them to the production environment.
+
+By adhering to these steps, you can ensure precise execution and validation of server-side rules, enhancing data handling and integration processes.
