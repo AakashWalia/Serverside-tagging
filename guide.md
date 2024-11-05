@@ -1,4 +1,6 @@
-# 
+# Guide
+
+The following guide will help you learn how you can 
 
 1. Configure datastreams for data collection and processing in Adobe Experience Platform.
 2. Implement event forwarding to optimise server-side data handling.
