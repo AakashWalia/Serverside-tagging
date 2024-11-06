@@ -129,7 +129,7 @@ For CM and Meta you need the follwing two extensions:
 
 **Note** that you can only use one Pixel ID and Access Token to integrate with your Meta account. However, when you are creating the rule, you can overwrite the pixel ids and access tokens.
 
-   ![Overwrite](./main/Overwrite.png)
+   ![Overwrite](./main/Overwrite2.png)
    
 2. Adobe Cloud Connector - No configuration necessary.
 
@@ -160,6 +160,6 @@ For instance, when configuring a Lead event for an AAMI account, you may establi
 
   ![Actions](./main/Actions.png)
 
-Once the rule is configured, proceed to publish it in the development environment. Utilize the Adobe Cloud Debugger extension to conduct thorough testing. Upon successful validation of the rules, you may publish them to the production environment.
+Once the rule is configured, proceed to publish it in the development environment. Utilise the Adobe Cloud Debugger extension to conduct thorough testing. Upon successful validation of the rules, you may publish them to the production environment.
 
 By adhering to these steps, you can ensure precise execution and validation of server-side rules, enhancing data handling and integration processes.
