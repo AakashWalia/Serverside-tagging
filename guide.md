@@ -31,7 +31,7 @@ A datastream represents the server-side configuration when implementing the Adob
 
 7. **Save:** Double check the settings and click on save.
 
-                                                   **Save**
+   ![Save](./main/Save.png)
    
 # Event Forwarding
 Lets learn what event forwarding is before we learn how to configure a service in datastream. 
@@ -45,7 +45,7 @@ Event forwarding in Adobe Experience Platform allows you to send collected event
 1. **Select Event Forwarding:** Under event forwarding in your left hand panel, click on event forwarding.
 2. **Create the property:**Click on **New Property** and give it an appropriate name and click on **Save**
 
-                                                   **Create Property**
+   ![CreateProperty](./main/CreateProperty.png)
 
 ## Adding Event Forwarding Service
 
@@ -55,11 +55,11 @@ Event forwarding in Adobe Experience Platform allows you to send collected event
 
 2. **Add a Service:** Click on **Add a Service** within your datastream.
 
-                                                   **Add Service**
+   ![AddService](./main/AddService.png)
 
 3. **Select Service Type:** From the dropdown list, select **Event Forwarding** as the service type.
 
-                                                   **Service Type**
+   ![ServiceType](./main/ServiceType.png)
 
 4. **Map to Event Forwarding Property:** Choose your desired event forwarding property from the dropdown list to map it accordingly.
 
@@ -70,7 +70,7 @@ Event forwarding in Adobe Experience Platform allows you to send collected event
 # Schema
 A schema is a set of rules that represent and validate the structure and format of data. At a high level, schemas provide an abstract definition of a real-world object (such as a person) and outline what data should be included in each instance of that object (such as first name, last name, birthday, and so on). XDM schemas are ideal for storing vast amounts of complex data in a self-contained format. You can have multiple schemas configured and choose the one that fits your use case. 
 
-                                                   **Schema**
+   ![Schema](./main/Schema.png)
 
 ## Mapping the schema
 
@@ -79,7 +79,7 @@ A schema is a set of rules that represent and validate the structure and format 
 1. **Create Data Schema:** Click on create schema and choose manual option. Further choose User, Event or other depending on what information you want to collect in your schema.
 2. **Edit Data Schema:** Once your schema is created, you can also edit your schema using data fields. You can also choose where in schema you want your data fields. For this specific scenario, we required information like email, phone, fbc (facebook cookie) etc. These were added in different parts of the schema.
 
-                                                   **Schema example**
+   ![Schemaex](./main/SchemaExample.png)
    
 You are ready to start creating rules in client side and server side after you have created the datastreams, created the property, configured the service and created the schema as per your use case. 
 
@@ -89,24 +89,25 @@ You are ready to start creating rules in client side and server side after you h
 
 Begin by configuring the WebSDK extension on the client side. This extension facilitates the transmission of necessary parameters with the payload from the Adobe Edge server to platforms such as Facebook or Campaign Manager. The only required configuration required is **IMS Organisation ID and Datastreams** Set up the IMS Organisation ID and the datastreams you have configured. You can further configure other settings such as personalisation and identity settings as required. These settings will govern the type of data collected and the method of collection.
 
-                                                   **Websdk Extension**
+   ![websdkExt](./main/WebsdkExtension.png)
 
 Upon completing the configuration, proceed to create global variables containing specific data within schemas intended for server-side transmission. It is essential to establish three primary rules:
 
 1. **Global Data Object -** Define the global object or data that should accompany all server calls.
 
-                                                   **Data Object**
+   ![DataObject](./main/DataObject.png)
    
 2. **Global Data Variable -** Establish a variable that is updated and populated with specific data. This variable can be referenced similarly to other data elements.
 
-                                                     **Data Variable**
+   ![DataVariable](./main/DataVariable.png)
+   
 3. **Global Merge Object -** Implement this data element to perform dual functions: transmitting the correct information to the server and updating the variable. It merges two data elements used in tandem.
 
-                                                     **Merge Object**
+   ![MergeObject](./main/MergeObject.png)
 
 In addition to the above three data elements, you should create data elements to capture the information required necessary for your ads platform. For example - Meta CAPI requires you to send a unique event id, fpc, fbp, user agent etc. CM API requires information like hashed email, hashed phone, GCLDC cookie etc to enhance the conversions.
 
-                                                     **Data Elements**
+   ![DataElement](./main/DataElements.png)
                                                      
 After you have created data elements to capture the information you require, you can create the rules to send data to server side.
 
@@ -114,7 +115,7 @@ After you have created data elements to capture the information you require, you
 
 Facebook Pixel is already setup, you need to add further actions to enable the pixel to send the paramters you need server side. Configure a SEND EVENT after your facebook pixel. Set the type of event (pageviews if its a pageview rule, Lead if its a lead event) and populate the XDM field with the Merge Object you created earlier. This enables the schema to be sent to adobe edge network. You can use the path for the specific variables and reference them to send it with your server side call. 
 
-                                                     **Rule Configuration**
+   ![RuleConfig](./main/RuleConfiguration.png)
 
 # Server Side Setup
 
@@ -124,11 +125,11 @@ For CM and Meta you need the follwing two extensions:
 
 1. Meta Conversions API Extension - You need Pixel ID and Access Token from your meta account for specific account to establish the connection. After the connection is established you can configure the rule and send data from Adobe Edge Server to your meta platform.
 
-                                                     **Meta Conversion**
+   ![MetaConversion](./main/MetaAPI.png)
 
 **Note** that you can only use one Pixel ID and Access Token to integrate with your Meta account. However, when you are creating the rule, you can overwrite the pixel ids and access tokens.
 
-                                                     **Overwrite**
+   ![Overwrite](./main/Overwrite.png)
    
 2. Adobe Cloud Connector - No configuration necessary.
 
@@ -138,7 +139,7 @@ Now you can start creating the data elements and rules server side.
 
 Data elements are inherently limited in server-side contexts due to their inability to be deployed directly on websites. Consequently, they can only reference variables transmitted to your server. This limitation is addressed through the use of schemas, which facilitate the capture of parameters on the server side that were initially collected on your website. To achieve this, reference the path of the parameter within the schema. This approach ensures that the necessary data is accurately captured and utilised for server-side operations.
 
-                                                     **fbccookie**
+   ![fbccookie](./main/fbccookie.png)
 
 ## Rule Configuration
 
@@ -146,15 +147,16 @@ In contrast to client-side operations, server-side processes do not utilise trig
 
 For instance, when configuring a Lead event for an AAMI account, you may establish the following conditions to specify the desired actions when these conditions are met:
 
-                                                     **LeadEvent** 
+  ![LeadEvents](./main/LeadEvent.png)
 
 1. Conditions - Lead Event condition to configure the rule to execute exclusively when the event is identified as a lead event and Brand condition to ensure the rule fires only when the brand is AAMI, excluding other digital brands such as APIA.
 
-                                                     **Conditions**
+  ![LeadCond](./main/LeadCondition.png)
+  ![BrandCond](./main/BrandCondition.png)
 
 3. Actions - Set up the action to transmit the API conversion event to Meta. Populate the fields with the appropriate event parameters, such as using {{fbc cookie}} for the click ID and {{fbp cookie}} for the browser ID.
 
-                                                     **Actions**
+  ![Actions](./main/Actions.png)
 
 Once the rule is configured, proceed to publish it in the development environment. Utilize the Adobe Cloud Debugger extension to conduct thorough testing. Upon successful validation of the rules, you may publish them to the production environment.
 
