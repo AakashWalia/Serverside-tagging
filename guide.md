@@ -21,7 +21,7 @@ A datastream represents the server-side configuration when implementing the Adob
 
 2. **Create a New Datastream:** Click on **Datastreams** in the left-hand menu and select **Create a Datastream**.
 
-                                                  main/createdatastream.png
+                                                 ![Datastream](./main/createdatastream.png)
 
 4. **Configure Datastream Settings:** Provide a descriptive name for your datastream. You can also add the description.
 
