@@ -140,6 +140,8 @@ Now you can start creating the data elements and rules server side.
 Data elements are inherently limited in server-side contexts due to their inability to be deployed directly on websites. Consequently, they can only reference variables transmitted to your server. This limitation is addressed through the use of schemas, which facilitate the capture of parameters on the server side that were initially collected on your website. To achieve this, reference the path of the parameter within the schema. This approach ensures that the necessary data is accurately captured and utilised for server-side operations.
 
    ![fbccookie](./main/fbccookie.png)
+   ![IP](./main/IP.png)
+   ![email](./main/hashedemail.png)
 
 ## Rule Configuration
 
