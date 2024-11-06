@@ -125,7 +125,7 @@ For CM and Meta you need the follwing two extensions:
 
 1. Meta Conversions API Extension - You need Pixel ID and Access Token from your meta account for specific account to establish the connection. After the connection is established you can configure the rule and send data from Adobe Edge Server to your meta platform.
 
-   ![MetaConversion](./main/MetaAPI.png)
+   ![MetaConversion](./main/MetaAPI2.png)
 
 **Note** that you can only use one Pixel ID and Access Token to integrate with your Meta account. However, when you are creating the rule, you can overwrite the pixel ids and access tokens.
 
