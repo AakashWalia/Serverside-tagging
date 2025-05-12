@@ -9,6 +9,7 @@ The following guide will help you learn how you can
 5. Create global variables and data elements for server-side operations.
 6. Configure rules for both client-side and server-side data handling.
 7. Use extensions to integrate with Meta and Adobe Cloud.
+8. Floodlights enhanced conversion implementation.
 
 # Datastreams
 A datastream represents the server-side configuration when implementing the Adobe Experience Platform Web and Mobile SDKs. Datastream is a configuration that defines how data is collected, processed, and sent to various destinations.
@@ -163,3 +164,58 @@ For instance, when configuring a Lead event for an AAMI account, you may establi
 Once the rule is configured, proceed to publish it in the development environment. Utilise the Adobe Cloud Debugger extension to conduct thorough testing. Upon successful validation of the rules, you may publish them to the production environment.
 
 By adhering to these steps, you can ensure precise execution and validation of server-side rules, enhancing data handling and integration processes.
+
+## Enhanced Conversion Implementation
+
+To implement Enhanced Conversions (EC) on the Adobe client side, complete the two steps below:
+
+1. In the global Floodlight snippet, set the parameter `allow_enhanced_conversions` to **true**.  
+2. In the conversion-event Floodlight snippet, pass the required personally identifiable information (PII).
+
+**Global Snippet Example**
+
+```
+<!-- 
+ Start of global snippet: Please do not remove
+ Place this snippet between the <head> and </head> tags on every page of your site.
+ -->
+ <!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=DC-10564333"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+ 
+  gtag('config', 'DC-10564333', {'allow_enhanced_conversions': true});
+ </script>
+ <!-- End of global snippet: Please do not remove -->
+```
+
+**Floodlight Example**
+
+```
+<!--
+ Event snippet for APIA Insurance - Funeral Protection - 02. Quote Completed on https://apply.apia.com.au/funeral/yourQuote: Please do not remove.
+ Place this snippet on pages with events you’re tracking. 
+ Creation date: 02/09/2025
+ -->
+ <script>
+  gtag('event', 'conversion', {
+  'allow_custom_scripts': true,
+  'u1': '[Quote Total]',
+  'u2': '[Quote Reference Number]',
+  'u3': '[Policy Type]',
+  'send_to': 'DC-10564333/quote0/apiai00+unique',
+  'user_data': {
+  'sha56_email_address': _satellite.getVar('Event Forwarding - DLM Hashed Email'),
+  'sha256_phone_number': _satellite.getVar('Event Forwarding - DLM Hashed Phone'),
+  }
+  });
+ </script>
+ <noscript>
+ <img src="https://ad.doubleclick.net/ddm/activity/src=10564333;type=quote0;cat=apiai00;u1=[Quote Total];u2=[Quote Reference Number];u3=[Policy Type];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ord=1;num=1?" width="1" height="1" alt=""/>
+ </noscript>
+ <!-- End of event snippet: Please do not remove -->
+```
+
+Validate your EC setup with Omnibug (or any preferred tag-debugging tool) to confirm that the hashed PII parameters are being sent.
