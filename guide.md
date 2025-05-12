@@ -218,4 +218,5 @@ To implement Enhanced Conversions (EC) on the Adobe client side, complete the tw
  <!-- End of event snippet: Please do not remove -->
 ```
 
-Validate your EC setup with Omnibug (or any preferred tag-debugging tool) to confirm that the hashed PII parameters are being sent.
+Validate your EC setup with Omnibug (or any preferred tag-debugging tool). The **em** parameter confirms that the hashed PII parameters are being sent.
+![validate](./main/validate.png)
